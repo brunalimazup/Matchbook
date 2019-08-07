@@ -17,4 +17,9 @@ public class LoginService {
 		loginRepository.save(login);
 		return "Login cadastrado";
 	}
+	
+	public void updateLogin (Login login) {
+		loginRepository.save(login);
+	}
+	
 }
