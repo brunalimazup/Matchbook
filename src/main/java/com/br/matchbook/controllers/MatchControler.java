@@ -3,12 +3,14 @@ package com.br.matchbook.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -68,5 +70,40 @@ public class MatchControler {
 		}
 		
 		return modelAndView;
+	}
+	@PostMapping("/login")
+	public ModelAndView login(Login login, HttpSession session) {
+		ModelAndView modelAndView = null;
+		if (session.getAttribute("lastUrl") != null)
+			;
+		{
+			modelAndView = new ModelAndView("redirect:" + session.getAttribute("lastUrl"));
+		}
+
+		Login objectLogin = loginService.findByNickAndPass(login);
+		if (objectLogin != null) {
+			session.setAttribute("User", objectLogin.getUser());
+			String message = objectLogin.getUser().getName() + "Bem vindo.";
+			modelAndView.addObject("Message", message);
+		} else {
+			String erro = "Senha ou nome incorretos";
+			modelAndView.addObject("Message", erro);
+		}
+		return modelAndView;
+	}
+	@DeleteMapping("/login/deletar")
+	public ModelAndView delete (Login login, User user) {
+		ModelAndView modelAndView = new  ModelAndView("login.html");
+		loginService.deleteLogin(login);
+		modelAndView.addObject(login);
+		return modelAndView;
+		
+	}
+	@PostMapping("/sair")
+	public ModelAndView logout (HttpSession session) {
+		ModelAndView modelAndView = new ModelAndView("redirect:/login");
+		session.removeAttribute("User");
+		return modelAndView;
+			
 	}
 }
