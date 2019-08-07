@@ -37,7 +37,6 @@ public class MatchControler {
 	public ModelAndView displayLoginPage() {
 		ModelAndView modelAndView = new ModelAndView("login.html");
 		return modelAndView;
-
 	}
 
 	@GetMapping("/cadastro")
