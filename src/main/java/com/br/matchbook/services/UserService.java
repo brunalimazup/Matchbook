@@ -10,6 +10,7 @@ import com.br.matchbook.repositories.UserRepository;
 public class UserService {
 	@Autowired
 	private UserRepository userRepository;
+	
 
 	public Iterable<User> showAllUsers() {
 		return userRepository.findAll();
