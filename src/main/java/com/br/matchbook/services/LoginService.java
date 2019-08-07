@@ -25,4 +25,9 @@ public class LoginService {
 	public void deleteLogin(Login login) {
 		loginRepository.delete(login);
 	}	
+	
+	public Login findByNickAndPass(Login login) {
+
+		return loginRepository.findByNicknameAndPassword(login.getNickname(), login.getPassword()).get();
+	}
 }
