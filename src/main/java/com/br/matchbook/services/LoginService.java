@@ -22,4 +22,7 @@ public class LoginService {
 		loginRepository.save(login);
 	}
 	
+	public void deleteLogin(Login login) {
+		loginRepository.delete(login);
+	}	
 }
