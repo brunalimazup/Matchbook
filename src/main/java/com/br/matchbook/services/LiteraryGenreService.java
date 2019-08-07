@@ -17,5 +17,9 @@ public class LiteraryGenreService {
 	public Iterable<LiteraryGenre> showAllLiteraryGenres (){
 		return literaryGenreRepository.findAll();
 	}
+	public String saveLiteraryGenre (LiteraryGenre literaryGenre) {
+		 literaryGenreRepository.save(literaryGenre);
+		 return "Gênero literario cadastrado";
 	
+	}
 }
