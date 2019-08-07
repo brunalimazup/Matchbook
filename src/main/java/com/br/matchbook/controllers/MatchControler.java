@@ -26,7 +26,7 @@ public class MatchControler {
 	private LoginService loginService;
 	@Autowired
 	private UserService userService;
-	
+
 	@GetMapping("/")
 	public ModelAndView displayHomePage() {
 		ModelAndView modelAndView = new ModelAndView("home.html");
@@ -45,19 +45,20 @@ public class MatchControler {
 		ModelAndView modelAndView = new ModelAndView("register.html");
 		return modelAndView;
 	}
-	
+
 	@PostMapping("/cadastro")
 	public ModelAndView saveForm(@Valid Login login, BindingResult bindingLogin, @Valid User user,
 			BindingResult bindingUser) {
 		ModelAndView modelAndView = new ModelAndView("register.html");
 
-		if (bindingLogin.hasErrors()  || bindingUser.hasErrors()) {
+		if (bindingLogin.hasErrors() || bindingUser.hasErrors()) {
 			List<String> erros = new ArrayList<String>();
 			for (ObjectError objectError : bindingLogin.getAllErrors()) {
 				erros.add(objectError.getDefaultMessage());
 				modelAndView.addObject("login", loginService);
 				modelAndView.addObject("erros", erros);
-			}	for (ObjectError objectError : bindingUser.getAllErrors()) {
+			}
+			for (ObjectError objectError : bindingUser.getAllErrors()) {
 				erros.add(objectError.getDefaultMessage());
 				modelAndView.addObject("user", userService);
 				modelAndView.addObject("erros", erros);
@@ -68,9 +69,10 @@ public class MatchControler {
 			modelAndView.addObject("users", userService.showAllUsers());
 
 		}
-		
+
 		return modelAndView;
 	}
+
 	@PostMapping("/login")
 	public ModelAndView login(Login login, HttpSession session) {
 		ModelAndView modelAndView = null;
@@ -91,19 +93,21 @@ public class MatchControler {
 		}
 		return modelAndView;
 	}
+
 	@DeleteMapping("/login/deletar")
-	public ModelAndView delete (Login login, User user) {
-		ModelAndView modelAndView = new  ModelAndView("login.html");
+	public ModelAndView delete(Login login, User user) {
+		ModelAndView modelAndView = new ModelAndView("login.html");
 		loginService.deleteLogin(login);
 		modelAndView.addObject(login);
 		return modelAndView;
-		
+
 	}
+
 	@PostMapping("/sair")
-	public ModelAndView logout (HttpSession session) {
+	public ModelAndView logout(HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/login");
 		session.removeAttribute("User");
 		return modelAndView;
-			
+
 	}
 }
