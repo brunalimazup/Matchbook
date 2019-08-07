@@ -1,0 +1,14 @@
+h1{
+    font-family: 'Fondamento', cursive;
+    margin: 0px;
+}
+
+h3{
+    font-family: 'Fondamento', cursive;
+}
+
+body {
+    background: linear-gradient(to bottom, #904e95, #e96443); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height: 100vh;
+}
+
