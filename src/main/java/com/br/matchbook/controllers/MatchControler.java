@@ -76,12 +76,9 @@ public class MatchControler {
 	@PostMapping("/login")
 	public ModelAndView login(Login login, HttpSession session) {
 		ModelAndView modelAndView = null;
-		if (session.getAttribute("lastUrl") != null)
-			;
-		{
+		if (session.getAttribute("lastUrl") != null) {
 			modelAndView = new ModelAndView("redirect:" + session.getAttribute("lastUrl"));
 		}
-
 		Login objectLogin = loginService.findByNickAndPass(login);
 		if (objectLogin != null) {
 			session.setAttribute("User", objectLogin.getUser());
