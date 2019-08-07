@@ -46,6 +46,13 @@ public class MatchControler {
 		return modelAndView;
 	}
 
+	@GetMapping("/generos")
+	public ModelAndView registerGenerousLiterary() {
+		ModelAndView modelAndView = new ModelAndView("genre.html");
+		return modelAndView;	
+	}
+	
+	
 	@PostMapping("/cadastro")
 	public ModelAndView saveForm(@Valid Login login, BindingResult bindingLogin, @Valid User user,
 			BindingResult bindingUser) {
