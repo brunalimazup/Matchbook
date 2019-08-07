@@ -11,21 +11,50 @@
 
 <body>
 
+    <div>
+        <form method="POST">
+            <div>
+                <p> Nome : <input type="text" name="name"> </p>
+                <span th:each="erro : ${erros}" th:if="${erro.field == 'name'}" th:text="${erro.msg}"></span>
+            </div>
 
-    <form method="POST">
-        <p> Nome : <input type="text" name="name"> </p>
-        <p> Sobrenome: <input type="text" name="lastName"> </p>
-        <p> Idade : <input type="text" name="age"> </p>
-        <p> Cidade : <input type="text" name="city"> </p>
-        <p> Sexo : Masculino <input type="radio" name="gender" value="Masculino">
-            Feminino <input type="radio" name="gender" value="Feminino">
-            Outros <input type="radio" name="gender" value="Outros"> </p>
-        <p> Nickname : <input type="text" name="nickname"></p>
-        <p>E-mail : <input type="text" name="email"> </p>
-        <p> Senha : <input type="text" name="password"> </p>
+            <div>
+                <p> Sobrenome: <input type="text" name="lastName"> </p>
+                <span th:each="erro : ${erros}" th:if="${erro.field == 'lastName'}" th:text="${erro.msg}"></span>
+            </div>
 
-        <button type="submit"> Cadastrar </button>
-    </form>
+            <div>
+                <p> Idade : <input type="number" name="age"> </p>
+                <span th:each="erro : ${erros}" th:if="${erro.field == 'age'}" th:text="${erro.msg}"></span>
+            </div>
+
+            <div>
+                <p> Cidade : <input type="text" name="city"> </p>
+                <span th:each="erro : ${erros}" th:if="${erro.field == 'city'}" th:text="${erro.msg}"></span>
+            </div>
+
+            <div>
+                <p> Sexo : Masculino <input type="radio" name="gender" value="Masculino">
+                    Feminino <input type="radio" name="gender" value="Feminino">
+                    Outros <input type="radio" name="gender" value="Outros"> </p>
+                <span th:each="erro : ${erros}" th:if="${erro.field == 'gender'}" th:text="${erro.msg}"></span>
+            </div>
+
+            <div>
+                <p> Nickname : <input type="text" name="nickname"></p>
+                <span th:each="erro : ${erros}" th:if="${erro.field == 'nickname'}" th:text="${erro.msg}"></span>
+            </div>
+            <div>
+                <p>E-mail : <input type="text" name="email"> </p>
+                <span th:each="erro : ${erros}" th:if="${erro.field == 'email'}" th:text="${erro.msg}"></span>
+            </div>
+            <div>
+                <p> Senha : <input type="text" name="password"> </p>
+                <span th:each="erro : ${erros}" th:if="${erro.field == 'password'}" th:text="${erro.msg}"></span>
+            </div>
+
+            <button type="submit"> Cadastrar </button>
+        </form>
 
 </body>
 
