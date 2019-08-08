@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.br.matchbook.models.LiteraryGenre;
 import com.br.matchbook.models.Login;
 import com.br.matchbook.models.User;
 import com.br.matchbook.services.LoginService;
@@ -26,6 +27,8 @@ public class MatchControler {
 	private LoginService loginService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	
 
 	@GetMapping("/")
 	public ModelAndView displayHomePage() {
@@ -114,4 +117,28 @@ public class MatchControler {
 		return modelAndView;
 
 	}
+	
+	@PostMapping("/cadastro")
+	public ModelAndView saveForm(@Valid LiteraryGenre literaryGenre, BindingResult bindingLiterary) {
+		ModelAndView modelAndView = new ModelAndView("register.html");
+
+		if (bindingLiterary.hasErrors() ) {
+			List<String> erros = new ArrayList<String>();
+			for (ObjectError objectError : bindingLiterary.getAllErrors()) {
+				erros.add(objectError.getDefaultMessage());
+				modelAndView.addObject("login", loginService);
+				modelAndView.addObject("erros", erros);
+			}
+			
+		} else {
+			
+//			modelAndView.addObject("logins", loginService.registerLogin(user, login));
+			modelAndView.addObject("users", userService.showAllUsers());
+
+		}
+
+		return modelAndView;
+	}
+
+	
 }
