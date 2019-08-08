@@ -83,9 +83,9 @@ public class MatchControler {
 
 		return modelAndView;
 	}
-	@PutMapping("/cadastro/atualizar/{id}")
+	@PutMapping("/cadastro/{id}")
 	public ModelAndView updateProfile(@PathVariable Integer id,@Valid User user, BindingResult bindingUser) {
-		ModelAndView modelAndView = new ModelAndView("updateProfile");
+		ModelAndView modelAndView = new ModelAndView("updateProfile.html");
 		modelAndView.addObject("message", userService.updateProfile(id, user));
 		return modelAndView;
 	}
