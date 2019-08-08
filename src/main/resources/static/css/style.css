@@ -8,7 +8,9 @@ h3{
 }
 
 body {
-    background: linear-gradient(to bottom, #904e95, #e96443); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #03001e;  
+    background: -webkit-linear-gradient(to top, #fdeff9, #7303c0, #03001e); 
+    background: linear-gradient(to bottom, #fdeff9, #7303c0, #03001e);    
     height: 100vh;
     display: flex;
 }
@@ -20,4 +22,10 @@ form div {
 
 form div p {
     margin: 0;
+} 
+.home {
+    color: beige;
+    text-align: center;
 }
+
+
