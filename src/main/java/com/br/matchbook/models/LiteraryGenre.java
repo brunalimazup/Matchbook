@@ -19,8 +19,8 @@ public class LiteraryGenre implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@NotBlank(message = "O campo nome precisa ser preenchido")
-	@Size(min = 2, message = "O campo nome tem que ter no mínimo dois caracteres")
+	@NotBlank(message = "O campo nome precisa ser preenchido e tem que ter no mínimo dois caracteres.")
+	@Size(min = 2)
 	private String name;
 
 	@ManyToMany
