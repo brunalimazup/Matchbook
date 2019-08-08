@@ -55,10 +55,9 @@ public class MatchControler {
 	@GetMapping("/cadastro/genre")
 	public ModelAndView registerGenerousLiterary() {
 		ModelAndView modelAndView = new ModelAndView("registerLiteraryGenre.html");
-		return modelAndView;	
+		return modelAndView;
 	}
-	
-	
+
 	@PostMapping("/cadastro")
 	public ModelAndView saveForm(@Valid Login login, BindingResult bindingLogin, @Valid User user,
 			BindingResult bindingUser) {
@@ -83,8 +82,9 @@ public class MatchControler {
 
 		return modelAndView;
 	}
+
 	@PutMapping("/cadastro/{id}")
-	public ModelAndView updateProfile(@PathVariable Integer id,@Valid User user, BindingResult bindingUser) {
+	public ModelAndView updateProfile(@PathVariable Integer id, @Valid User user, BindingResult bindingUser) {
 		ModelAndView modelAndView = new ModelAndView("updateProfile.html");
 		modelAndView.addObject("message", userService.updateProfile(id, user));
 		return modelAndView;
@@ -124,7 +124,7 @@ public class MatchControler {
 		return modelAndView;
 
 	}
-	
+
 	@PostMapping("/cadastro/genre")
 	public ModelAndView saveGenre(@Valid LiteraryGenre literaryGenre, BindingResult bindingGenre) {
 		ModelAndView modelAndView = new ModelAndView("registerLiteraryGenre.html");
@@ -139,11 +139,16 @@ public class MatchControler {
 		} else {
 			literaryGenreService.saveLiteraryGenre(literaryGenre);
 			modelAndView.addObject("genres", literaryGenreService.showAllLiteraryGenres());
-			
 
 		}
 		return modelAndView;
+	}
+
+	@GetMapping("/perfil")
+	public ModelAndView displayProfile() {
+		ModelAndView modelAndView = new ModelAndView("profile.html");
+		return modelAndView;
+	}
 
 	
-}
 }
