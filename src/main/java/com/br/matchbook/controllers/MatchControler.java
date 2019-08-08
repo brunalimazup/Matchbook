@@ -51,9 +51,9 @@ public class MatchControler {
 		return modelAndView;
 	}
 
-	@GetMapping("/cadastro/genre")
+	@GetMapping("/generos")
 	public ModelAndView registerGenerousLiterary() {
-		ModelAndView modelAndView = new ModelAndView("registerLiteraryGenre.html");
+		ModelAndView modelAndView = new ModelAndView("genre.html");
 		return modelAndView;	
 	}
 	

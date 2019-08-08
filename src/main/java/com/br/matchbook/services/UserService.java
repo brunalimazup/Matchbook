@@ -15,4 +15,7 @@ public class UserService {
 	public Iterable<User> showAllUsers() {
 		return userRepository.findAll();
 	}
+	public void updateForm (Integer id, User user) {
+		userRepository.save(user);
+	}
 }
