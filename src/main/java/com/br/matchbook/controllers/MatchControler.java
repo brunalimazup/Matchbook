@@ -20,6 +20,7 @@ import com.br.matchbook.models.Erros;
 import com.br.matchbook.models.LiteraryGenre;
 import com.br.matchbook.models.Login;
 import com.br.matchbook.models.User;
+import com.br.matchbook.services.LiteraryGenreService;
 import com.br.matchbook.services.LoginService;
 import com.br.matchbook.services.UserService;
 
@@ -30,7 +31,7 @@ public class MatchControler {
 	@Autowired
 	private UserService userService;
 	@Autowired
-	
+	private LiteraryGenreService literaryGenreService;
 
 	@GetMapping("/")
 	public ModelAndView displayHomePage() {
@@ -117,27 +118,25 @@ public class MatchControler {
 
 	}
 	
-	@PostMapping("/cadastro")
-	public ModelAndView saveForm(@Valid LiteraryGenre literaryGenre, BindingResult bindingLiterary) {
-		ModelAndView modelAndView = new ModelAndView("register.html");
+	@PostMapping("/cadastro/genre")
+	public ModelAndView saveGenre(@Valid LiteraryGenre literaryGenre, BindingResult bindingGenre) {
+		ModelAndView modelAndView = new ModelAndView("registerLiteraryGenre.html");
 
-		if (bindingLiterary.hasErrors() ) {
-			List<String> erros = new ArrayList<String>();
-			for (ObjectError objectError : bindingLiterary.getAllErrors()) {
-				erros.add(objectError.getDefaultMessage());
-				modelAndView.addObject("login", loginService);
-				modelAndView.addObject("erros", erros);
+		if (bindingGenre.hasErrors()) {
+			List<Erros> erros = new ArrayList<Erros>();
+			for (FieldError objectError : bindingGenre.getFieldErrors()) {
+				erros.add(new Erros(objectError.getDefaultMessage(), objectError.getField()));
 			}
-			
+			System.out.println(erros);
+			modelAndView.addObject("erros", erros);
 		} else {
+			literaryGenreService.saveLiteraryGenre(literaryGenre);
+			modelAndView.addObject("genres", literaryGenreService.showAllLiteraryGenres());
 			
-//			modelAndView.addObject("logins", loginService.registerLogin(user, login));
-			modelAndView.addObject("users", userService.showAllUsers());
 
 		}
-
 		return modelAndView;
-	}
 
 	
+}
 }
