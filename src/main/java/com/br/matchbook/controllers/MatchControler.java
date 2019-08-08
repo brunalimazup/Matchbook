@@ -9,12 +9,14 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.br.matchbook.models.Erros;
 import com.br.matchbook.models.LiteraryGenre;
 import com.br.matchbook.models.Login;
 import com.br.matchbook.models.User;
@@ -40,7 +42,6 @@ public class MatchControler {
 	public ModelAndView displayLoginPage() {
 		ModelAndView modelAndView = new ModelAndView("login.html");
 		return modelAndView;
-
 	}
 
 	@GetMapping("/cadastro")
@@ -62,17 +63,15 @@ public class MatchControler {
 		ModelAndView modelAndView = new ModelAndView("register.html");
 
 		if (bindingLogin.hasErrors() || bindingUser.hasErrors()) {
-			List<String> erros = new ArrayList<String>();
-			for (ObjectError objectError : bindingLogin.getAllErrors()) {
-				erros.add(objectError.getDefaultMessage());
-				modelAndView.addObject("login", loginService);
-				modelAndView.addObject("erros", erros);
+			List<Erros> erros = new ArrayList<Erros>();
+			for (FieldError objectError : bindingLogin.getFieldErrors()) {
+				erros.add(new Erros(objectError.getDefaultMessage(), objectError.getField()));
 			}
-			for (ObjectError objectError : bindingUser.getAllErrors()) {
-				erros.add(objectError.getDefaultMessage());
-				modelAndView.addObject("user", userService);
-				modelAndView.addObject("erros", erros);
+			for (FieldError objectError : bindingUser.getFieldErrors()) {
+				erros.add(new Erros(objectError.getDefaultMessage(), objectError.getField()));
 			}
+			System.out.println(erros);
+			modelAndView.addObject("erros", erros);
 		} else {
 			loginService.registerLogin(user, login);
 			modelAndView.addObject("logins", loginService.registerLogin(user, login));

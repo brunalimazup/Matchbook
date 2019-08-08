@@ -22,23 +22,23 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@NotBlank(message = "O campo nome precisa ser preenchido")
-	@Size(min = 2, message = "O campo nome precisa ter no mínimo dois caracteres.")
+	@NotBlank(message = "O campo nome precisa ser preenchido e deve ter no mínimo 2 caracteres.")
+	@Size(min = 2)
 	private String name;
 
-	@NotBlank(message = "O campo nome precisa ser preenchido")
-	@Size(min = 2, message = "O campo sobrenome precisa ter no mínimo dois caracteres.")
+	@NotBlank(message = "O campo nome precisa ser preenchido e deve ter no mínimo 2 caracteres.")
+	@Size(min = 2)
 	private String lastName;
 
-	@NotNull
-	@Min(value = 18, message = "Menores de 18 anos não podem utilizar o Mathbook.")
+	@NotNull ( message = "Menores de 18 anos não podem utilizar o Mathbook.")
+	@Min(value = 18)
 	private int age;
 
-	@NotBlank(message = "O campo cidade precisa ser preenchido")
-	@Size(min = 2, message = "O campo cidade precisa ter no mínimo dois caracteres.")
+	@NotBlank(message = "O campo cidade precisa ser preenchido e deve ter no mínimo 2 caracteres.")
+	@Size(min = 2)
 	private String city;
 
-	@NotBlank(message = "O campo sexo precisa ser preenchido")
+	@NotBlank(message = "O campo sexo precisa ser preenchido.")
 	private String gender;
 
 	@OneToOne(mappedBy = "user")

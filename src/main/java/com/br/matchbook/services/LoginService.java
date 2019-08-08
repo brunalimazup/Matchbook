@@ -15,7 +15,7 @@ public class LoginService {
 	public String registerLogin (User user, Login login) {
 		login.setUser(user);
 		loginRepository.save(login);
-		return "Login cadastrado";
+		return "Login cadastrado com sucesso";
 	}
 	
 	public void updateLogin (Login login) {
@@ -30,4 +30,6 @@ public class LoginService {
 
 		return loginRepository.findByNicknameAndPassword(login.getNickname(), login.getPassword()).get();
 	}
+	
+	
 }

@@ -20,16 +20,16 @@ public class Login implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@NotBlank(message = "O campo nickname precisa ser preenchido")
-	@Size(min = 2, message = "O nickname precisa ter no mínimo dois caracteres")
+	@NotBlank(message = "O campo nickname precisa ser preenchido e precisa ter no mínimo 2 caracteres.")
+	@Size(min = 2)
 	private String nickname;
 
-	@NotBlank(message = "O campo e-mail precisa ser preenchido")
+	@NotBlank(message = "O campo e-mail precisa ser preenchido.")
 	@Email
 	private String email;
 
-	@NotBlank(message = "O campo senha precisa ser preenchido")
-	@Size(min = 6, message = "Sua senha precisa ter no mínimo seis caracteres")
+	@NotBlank(message = "O campo senha precisa ser preenchido e deve ter no mínimo 6 caracteres")
+	@Size(min = 6)
 	private String password;
 
 	@OneToOne(cascade = {CascadeType.ALL})
