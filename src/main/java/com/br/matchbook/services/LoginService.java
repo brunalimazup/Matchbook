@@ -34,6 +34,11 @@ public class LoginService {
 
 		return loginRepository.findByNicknameAndPassword(login.getNickname(), login.getPassword()).get();
 	}
+
+	public Object findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }
