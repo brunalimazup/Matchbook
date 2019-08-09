@@ -26,7 +26,7 @@ import com.br.matchbook.services.LoginService;
 import com.br.matchbook.services.UserService;
 
 @Controller
-public class MatchControler {
+public class MatchController {
 	@Autowired
 	private LoginService loginService;
 	@Autowired
@@ -35,6 +35,7 @@ public class MatchControler {
 	private LiteraryGenreService literaryGenreService;
 
 	// metodos da pagina inicial 
+	
 	@GetMapping("/")
 	public ModelAndView displayHomePage() {
 		ModelAndView modelAndView = new ModelAndView("home.html");
