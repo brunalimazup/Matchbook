@@ -76,7 +76,7 @@ public class MatchController {
 			modelAndView.addObject("erros", erros);
 		} else {
 			loginService.registerLogin(user, login);
-			modelAndView = new ModelAndView("redirect:/perfil");
+			modelAndView = new ModelAndView("redirect:/login");
 			
 		}
 
@@ -157,9 +157,10 @@ public class MatchController {
 	// metodos da pagina de perfil
 
 	@GetMapping("/perfil")
-	public ModelAndView displayProfile() {
+	public ModelAndView displayProfile(HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView("profile.html");
-		modelAndView.addObject("user", userService.showAllUsers());
+		User user = (User) session.getAttribute("User");
+		modelAndView.addObject("user", userService.toCompareUsers(user));
 		return modelAndView;
 	}
 
@@ -170,12 +171,6 @@ public class MatchController {
 		ModelAndView modelAndView = new ModelAndView("redirect:/perfil");
 		return modelAndView;
 	}
-	@GetMapping("/perfil")
-	public ModelAndView toCompareUsers(User user) {
-		ModelAndView modelAndView = new ModelAndView("profile.html");
-		userService.toCompareUsers(user);
-		modelAndView.addObject(user);
-		return modelAndView;
-	}
+	
 
 }
