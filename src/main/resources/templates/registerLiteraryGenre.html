@@ -10,7 +10,7 @@
  <div>
         <form method="POST">
             <div>
-                <p> Nome : <input type="text" name="name"> </p>
+                <p> Gênero Literário : <input type="text" name="name"> </p>
                 <span th:each="erro : ${erros}" th:if="${erro.field == 'name'}" th:text="${erro.msg}"></span>
             </div>
             <button type="submit"> Cadastrar </button>
