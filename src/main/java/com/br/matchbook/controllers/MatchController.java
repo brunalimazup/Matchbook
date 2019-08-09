@@ -170,5 +170,12 @@ public class MatchController {
 		ModelAndView modelAndView = new ModelAndView("redirect:/perfil");
 		return modelAndView;
 	}
+	@GetMapping("/perfil")
+	public ModelAndView toCompareUsers(User user) {
+		ModelAndView modelAndView = new ModelAndView("profile.html");
+		userService.toCompareUsers(user);
+		modelAndView.addObject(user);
+		return modelAndView;
+	}
 
 }
