@@ -91,19 +91,21 @@ public class MatchControler {
 	// metodos da pagina de login
 
 	@PostMapping("/login")
-	public ModelAndView login(Login login, HttpSession session) {
+	public ModelAndView login(@Valid Login login, HttpSession session) {
 		ModelAndView modelAndView = null;
-		if (session.getAttribute("lastUrl") != null) {
+		if(session.getAttribute("lastUrl")!= null) {
 			modelAndView = new ModelAndView("redirect:" + session.getAttribute("lastUrl"));
+		}else {
+			modelAndView = new ModelAndView("login.html");
 		}
 		Login objectLogin = loginService.findByNickAndPass(login);
-		if (objectLogin != null) {
+		if(objectLogin != null) {
 			session.setAttribute("User", objectLogin.getUser());
-			String message = objectLogin.getUser().getName() + "Bem vindo.";
-			modelAndView.addObject("Message", message);
-		} else {
-			String erro = "Senha ou nome incorretos";
-			modelAndView.addObject("Message", erro);
+			String welcome = objectLogin.getUser().getName() + "Bem vindo";
+			modelAndView.addObject("message", welcome);
+		}else {
+			String error = "Senha ou Nome incorretos";
+			modelAndView.addObject(error);
 		}
 		return modelAndView;
 	}
@@ -163,3 +165,20 @@ public class MatchControler {
 
 	
 }
+
+
+//ModelAndView modelAndView = new ModelAndView("profile.html");
+//if (session.getAttribute("login.html") != null) {
+//	modelAndView = new ModelAndView("redirect:" + session.getAttribute("login.html"));
+//	}
+//Login objectLogin = loginService.findByNickAndPass(login);
+//if (objectLogin != null) {
+//	session.setAttribute("User", objectLogin.getUser());
+//	String message = objectLogin.getUser().getName() + "Bem vindo.";
+//	modelAndView.addObject("Message", message);
+//} else {
+//	String erro = "Senha ou nome incorretos";
+//	modelAndView.addObject("Message", erro);
+//}
+//return modelAndView;
+//
