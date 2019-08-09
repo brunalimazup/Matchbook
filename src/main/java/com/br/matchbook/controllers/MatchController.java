@@ -26,7 +26,7 @@ import com.br.matchbook.services.LoginService;
 import com.br.matchbook.services.UserService;
 
 @Controller
-public class MatchControler {
+public class MatchController {
 	@Autowired
 	private LoginService loginService;
 	@Autowired
@@ -34,24 +34,24 @@ public class MatchControler {
 	@Autowired
 	private LiteraryGenreService literaryGenreService;
 
-	// metodos da pagina inicial 
+	// metodos da pagina inicial
+
 	@GetMapping("/")
 	public ModelAndView displayHomePage() {
 		ModelAndView modelAndView = new ModelAndView("home.html");
 		return modelAndView;
 	}
 
-	
 	// metodos da pagina de login
-	
+
 	@GetMapping("/login")
 	public ModelAndView displayLoginPage() {
 		ModelAndView modelAndView = new ModelAndView("login.html");
 		return modelAndView;
 	}
 
-	//metodos da pagina de cadastro de usuarios
-	
+	// metodos da pagina de cadastro de usuarios
+
 	@GetMapping("/cadastro")
 	public ModelAndView displayRegisterPage() {
 		ModelAndView modelAndView = new ModelAndView("register.html");
@@ -80,7 +80,7 @@ public class MatchControler {
 
 		return modelAndView;
 	}
-	
+
 	@PutMapping("/cadastro/{id}")
 	public ModelAndView updateProfile(@PathVariable Integer id, @Valid User user, BindingResult bindingUser) {
 		ModelAndView modelAndView = new ModelAndView("updateProfile.html");
@@ -93,17 +93,17 @@ public class MatchControler {
 	@PostMapping("/login")
 	public ModelAndView login(@Valid Login login, HttpSession session) {
 		ModelAndView modelAndView = null;
-		if(session.getAttribute("lastUrl")!= null) {
+		if (session.getAttribute("lastUrl") != null) {
 			modelAndView = new ModelAndView("redirect:" + session.getAttribute("lastUrl"));
-		}else {
+		} else {
 			modelAndView = new ModelAndView("login.html");
 		}
 		Login objectLogin = loginService.findByNickAndPass(login);
-		if(objectLogin != null) {
+		if (objectLogin != null) {
 			session.setAttribute("User", objectLogin.getUser());
-			String welcome = objectLogin.getUser().getName() + "Bem vindo";
+			String welcome = "Olá" + objectLogin.getUser().getName() + "Bem vindo";
 			modelAndView.addObject("message", welcome);
-		}else {
+		} else {
 			String error = "Senha ou Nome incorretos";
 			modelAndView.addObject(error);
 		}
@@ -127,14 +127,14 @@ public class MatchControler {
 
 	}
 
-	// metodos da pagina de generos literarios 
-	
+	// metodos da pagina de generos literarios
+
 	@GetMapping("/cadastro/genre")
 	public ModelAndView registerGenerousLiterary() {
 		ModelAndView modelAndView = new ModelAndView("registerLiteraryGenre.html");
 		return modelAndView;
 	}
-	
+
 	@PostMapping("/cadastro/genre")
 	public ModelAndView saveGenre(@Valid LiteraryGenre literaryGenre, BindingResult bindingGenre) {
 		ModelAndView modelAndView = new ModelAndView("registerLiteraryGenre.html");
@@ -155,30 +155,19 @@ public class MatchControler {
 	}
 
 	// metodos da pagina de perfil
-	
+
 	@GetMapping("/perfil")
 	public ModelAndView displayProfile() {
 		ModelAndView modelAndView = new ModelAndView("profile.html");
 		modelAndView.addObject("user", userService.showAllUsers());
 		return modelAndView;
 	}
-
 	
+	@PostMapping("/perfil")
+	public ModelAndView likeUser(HttpSession session) {
+		User user = (User)session.getAttribute("User");
+		ModelAndView modelAndView = new ModelAndView("profile.html");
+		return modelAndView;	
+	}
+
 }
-
-
-//ModelAndView modelAndView = new ModelAndView("profile.html");
-//if (session.getAttribute("login.html") != null) {
-//	modelAndView = new ModelAndView("redirect:" + session.getAttribute("login.html"));
-//	}
-//Login objectLogin = loginService.findByNickAndPass(login);
-//if (objectLogin != null) {
-//	session.setAttribute("User", objectLogin.getUser());
-//	String message = objectLogin.getUser().getName() + "Bem vindo.";
-//	modelAndView.addObject("Message", message);
-//} else {
-//	String erro = "Senha ou nome incorretos";
-//	modelAndView.addObject("Message", erro);
-//}
-//return modelAndView;
-//
