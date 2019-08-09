@@ -52,6 +52,12 @@
                 <p> Senha : <input type="text" name="password"> </p>
                 <span th:each="erro : ${erros}" th:if="${erro.field == 'password'}" th:text="${erro.msg}"></span>
             </div>
+            <p th:each="genre : ${literaryGenres}">
+                <input type="checkbox" th:value="${genre.id}" th:text="${genre.name}" name="literaryGenre">
+            </p>
+            <div>
+
+            </div>
 
             <button> Cadastrar </button>
         </form>
