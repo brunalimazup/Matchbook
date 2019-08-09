@@ -159,6 +159,7 @@ public class MatchControler {
 	@GetMapping("/perfil")
 	public ModelAndView displayProfile() {
 		ModelAndView modelAndView = new ModelAndView("profile.html");
+		modelAndView.addObject("user", userService.showAllUsers());
 		return modelAndView;
 	}
 

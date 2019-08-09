@@ -12,11 +12,11 @@
 <body>
 
     <div th:each="users : ${user} ">
-        <h5 th:text="${user.name}"></h5>
-        <p th:text="${user.lastName}"></p>
-        <p th:text="${user.age}"></p>
-        <p th:text="${user.city}"></p>
-        <p th:text="${user.gender}"></p>
+        <h5 th:text="${users.name}"></h5>
+        <p th:text="${users.lastName}"></p>
+        <p th:text="${users.age}"></p>
+        <p th:text="${users.city}"></p>
+        <p th:text="${users.gender}"></p>
     </div>
 
 
