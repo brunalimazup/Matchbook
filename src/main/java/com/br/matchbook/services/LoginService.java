@@ -31,8 +31,14 @@ public class LoginService {
 	}	
 	
 	public Login findByNickAndPass(Login login) {
-
-		return loginRepository.findByNicknameAndPassword(login.getNickname(), login.getPassword()).get();
+		Login obj = null;
+		try {
+			obj = loginRepository.findByNicknameAndPassword(login.getNickname(), login.getPassword()).get();
+			return obj;
+		} catch (Exception e) {
+			return obj;
+		}
+		
 	}
 
 	public Object findAll() {

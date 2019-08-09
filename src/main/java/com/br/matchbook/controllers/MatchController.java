@@ -97,15 +97,15 @@ public class MatchController {
 		ModelAndView modelAndView = null;
 		if (session.getAttribute("lastUrl") != null) {
 			modelAndView = new ModelAndView("redirect:" + session.getAttribute("lastUrl"));
-		} else {
-			modelAndView = new ModelAndView("redirect:/perfil");
-		}
+		} 
 		Login objectLogin = loginService.findByNickAndPass(login);
 		if (objectLogin != null) {
 			session.setAttribute("User", objectLogin.getUser());
+			modelAndView = new ModelAndView("redirect:/perfil");
 		} else {
-			String error = "Senha ou Nome incorretos";
-			modelAndView.addObject(error);
+			String error = "Senha ou Nome incorretos. Verifique se possui um cadastro.";
+			modelAndView = new ModelAndView("login.html");
+			modelAndView.addObject("error", error);
 		}
 		return modelAndView;
 	}
