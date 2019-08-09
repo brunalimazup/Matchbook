@@ -125,5 +125,10 @@ public class User implements Serializable {
 		this.usersLiked = usersLiked;
 	}
 	
+	//Método de likes
+	
+	public void likeUser (User user) {
+		this.usersLiked.add(user);
+	}
 
 }
