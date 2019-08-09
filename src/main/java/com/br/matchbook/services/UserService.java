@@ -15,22 +15,25 @@ public class UserService {
 	private UserRepository userRepository;
 
 	public List<User> showAllUsers() {
-		Iterable<User> allUsersBank = userRepository.findAll();	
+		Iterable<User> allUsersBank = userRepository.findAll();
 		List<User> allUsersList = new ArrayList<User>();
 		for (User user : allUsersBank) {
 			allUsersList.add(user);
 		}
-		
+
 		return allUsersList;
 	}
-	public Iterable<User> toCompareUsers (User user) {
+
+	public Iterable<User> toCompareUsers(User user) {
 		List<User> allUsers = showAllUsers();
-		List<User> listUser = user.getUsersLiked();
+		User obj = userRepository.findById(user.getId()).get();
+		List<User> listUser = obj.getUsersLiked();
 		for (User especificUser : listUser) {
-			if(allUsers.contains(especificUser)) {
+			if (allUsers.contains(especificUser)) {
 				allUsers.remove(especificUser);
 			}
 		}
+		allUsers.remove(obj);
 		return allUsers;
 
 	}
