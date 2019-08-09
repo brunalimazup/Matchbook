@@ -20,5 +20,11 @@ public class UserService {
 		return "Perfil atualizado";
 	}
 	
+	public void likeUser (User userLiker, Integer id) {
+		User obj = userRepository.findById(userLiker.getId()).get();
+		obj.getUsersLiked().add(userRepository.findById(id).get());
+		userRepository.save(obj);
+		
+	}
 	
 }

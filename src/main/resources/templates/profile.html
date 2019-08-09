@@ -17,6 +17,10 @@
         <p th:text="${users.age}"></p>
         <p th:text="${users.city}"></p>
         <p th:text="${users.gender}"></p>
+        <form method="POST">
+            <input style="display: none;" th:value="${users.id}" name="id">
+            <button type="submit"> Like </button>
+        </form>
     </div>
 
 

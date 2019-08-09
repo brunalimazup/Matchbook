@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -24,8 +23,6 @@ public class Login implements Serializable {
 	@Size(min = 2)
 	private String nickname;
 
-	@NotBlank(message = "O campo e-mail precisa ser preenchido.")
-	@Email
 	private String email;
 
 	@NotBlank(message = "O campo senha precisa ser preenchido e deve ter no mínimo 6 caracteres")
