@@ -163,6 +163,13 @@ public class MatchController {
 		modelAndView.addObject("user", userService.showAllUsers());
 		return modelAndView;
 	}
+	
+	@PostMapping("/perfil")
+	public ModelAndView likeUser(HttpSession session) {
+		User user = (User)session.getAttribute("User");
+		ModelAndView modelAndView = new ModelAndView("profile.html");
+		return modelAndView;	
+	}
 
 	
 }
