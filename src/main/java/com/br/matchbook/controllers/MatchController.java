@@ -101,8 +101,6 @@ public class MatchController {
 		Login objectLogin = loginService.findByNickAndPass(login);
 		if (objectLogin != null) {
 			session.setAttribute("User", objectLogin.getUser());
-			String welcome = "Olá" + objectLogin.getUser().getName() + "Bem vindo";
-			modelAndView.addObject("message", welcome);
 		} else {
 			String error = "Senha ou Nome incorretos";
 			modelAndView.addObject(error);
@@ -162,13 +160,13 @@ public class MatchController {
 		modelAndView.addObject("user", userService.showAllUsers());
 		return modelAndView;
 	}
-	
+
 	@PostMapping("/perfil")
 	public ModelAndView likeUser(HttpSession session, Integer id) {
 		User userLiker = (User) session.getAttribute("User");
 		userService.likeUser(userLiker, id);
 		ModelAndView modelAndView = new ModelAndView("redirect:/perfil");
-		return modelAndView;	
+		return modelAndView;
 	}
 
 }
