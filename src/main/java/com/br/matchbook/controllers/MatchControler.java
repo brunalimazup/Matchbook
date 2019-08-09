@@ -34,27 +34,27 @@ public class MatchControler {
 	@Autowired
 	private LiteraryGenreService literaryGenreService;
 
+	// metodos da pagina inicial 
 	@GetMapping("/")
 	public ModelAndView displayHomePage() {
 		ModelAndView modelAndView = new ModelAndView("home.html");
 		return modelAndView;
 	}
 
+	
+	// metodos da pagina de login
+	
 	@GetMapping("/login")
 	public ModelAndView displayLoginPage() {
 		ModelAndView modelAndView = new ModelAndView("login.html");
 		return modelAndView;
 	}
 
+	//metodos da pagina de cadastro de usuarios
+	
 	@GetMapping("/cadastro")
 	public ModelAndView displayRegisterPage() {
 		ModelAndView modelAndView = new ModelAndView("register.html");
-		return modelAndView;
-	}
-
-	@GetMapping("/cadastro/genre")
-	public ModelAndView registerGenerousLiterary() {
-		ModelAndView modelAndView = new ModelAndView("registerLiteraryGenre.html");
 		return modelAndView;
 	}
 
@@ -82,13 +82,15 @@ public class MatchControler {
 
 		return modelAndView;
 	}
-
+	
 	@PutMapping("/cadastro/{id}")
 	public ModelAndView updateProfile(@PathVariable Integer id, @Valid User user, BindingResult bindingUser) {
 		ModelAndView modelAndView = new ModelAndView("updateProfile.html");
 		modelAndView.addObject("message", userService.updateProfile(id, user));
 		return modelAndView;
 	}
+
+	// metodos da pagina de login
 
 	@PostMapping("/login")
 	public ModelAndView login(Login login, HttpSession session) {
@@ -125,6 +127,14 @@ public class MatchControler {
 
 	}
 
+	// metodos da pagina de generos literarios 
+	
+	@GetMapping("/cadastro/genre")
+	public ModelAndView registerGenerousLiterary() {
+		ModelAndView modelAndView = new ModelAndView("registerLiteraryGenre.html");
+		return modelAndView;
+	}
+	
 	@PostMapping("/cadastro/genre")
 	public ModelAndView saveGenre(@Valid LiteraryGenre literaryGenre, BindingResult bindingGenre) {
 		ModelAndView modelAndView = new ModelAndView("registerLiteraryGenre.html");
@@ -144,6 +154,8 @@ public class MatchControler {
 		return modelAndView;
 	}
 
+	// metodos da pagina de perfil
+	
 	@GetMapping("/perfil")
 	public ModelAndView displayProfile() {
 		ModelAndView modelAndView = new ModelAndView("profile.html");
