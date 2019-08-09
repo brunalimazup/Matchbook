@@ -46,6 +46,8 @@ public class User implements Serializable {
 	
 	@ManyToMany
 	private List<LiteraryGenre> literaryGenre;
+	
+	private List<User> usersLiked;
 
 	public User() {
 
@@ -105,6 +107,22 @@ public class User implements Serializable {
 
 	public void setLiteraryGenre(List<LiteraryGenre> literaryGenre) {
 		this.literaryGenre = literaryGenre;
+	}
+
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
+	}
+
+	public List<User> getUsersLiked() {
+		return usersLiked;
+	}
+
+	public void setUsersLiked(List<User> usersLiked) {
+		this.usersLiked = usersLiked;
 	}
 	
 
