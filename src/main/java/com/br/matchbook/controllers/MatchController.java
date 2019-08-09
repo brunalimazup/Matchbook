@@ -96,7 +96,7 @@ public class MatchController {
 		if (session.getAttribute("lastUrl") != null) {
 			modelAndView = new ModelAndView("redirect:" + session.getAttribute("lastUrl"));
 		} else {
-			modelAndView = new ModelAndView("login.html");
+			modelAndView = new ModelAndView("redirect:/perfil");
 		}
 		Login objectLogin = loginService.findByNickAndPass(login);
 		if (objectLogin != null) {
@@ -164,9 +164,10 @@ public class MatchController {
 	}
 	
 	@PostMapping("/perfil")
-	public ModelAndView likeUser(HttpSession session) {
-		User user = (User)session.getAttribute("User");
-		ModelAndView modelAndView = new ModelAndView("profile.html");
+	public ModelAndView likeUser(HttpSession session, Integer id) {
+		User userLiker = (User) session.getAttribute("User");
+		userService.likeUser(userLiker, id);
+		ModelAndView modelAndView = new ModelAndView("redirect:/perfil");
 		return modelAndView;	
 	}
 

@@ -13,6 +13,10 @@ public class LoginService {
 	private LoginRepository loginRepository;
 	
 	public String registerLogin (User user, Login login) {
+		
+		if(loginRepository.existsByNickname(login.getNickname())) {
+			return "NickName já existe. Escolha outro"; 
+		}
 		login.setUser(user);
 		loginRepository.save(login);
 		return "Login cadastrado com sucesso";

@@ -14,6 +14,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -47,6 +49,8 @@ public class User implements Serializable {
 	@ManyToMany
 	private List<LiteraryGenre> literaryGenre;
 	
+	@ManyToMany
+	@JsonIgnoreProperties("usersLiked")
 	private List<User> usersLiked;
 
 	public User() {
@@ -129,6 +133,17 @@ public class User implements Serializable {
 	
 	public void likeUser (User user) {
 		this.usersLiked.add(user);
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder modelo = new StringBuilder();
+		modelo.append("Nome:");
+		modelo.append(this.name);
+		modelo.append("\nNickName");
+		modelo.append(this.lastName);
+		
+		return modelo.toString();
 	}
 
 }
