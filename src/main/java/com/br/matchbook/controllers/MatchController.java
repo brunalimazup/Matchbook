@@ -55,6 +55,7 @@ public class MatchController {
 	@GetMapping("/cadastro")
 	public ModelAndView displayRegisterPage() {
 		ModelAndView modelAndView = new ModelAndView("register.html");
+		modelAndView.addObject("literaryGenres", literaryGenreService.showAllLiteraryGenres());
 		return modelAndView;
 	}
 
@@ -76,6 +77,7 @@ public class MatchController {
 		} else {
 			loginService.registerLogin(user, login);
 			modelAndView = new ModelAndView("redirect:/perfil");
+			
 		}
 
 		return modelAndView;
