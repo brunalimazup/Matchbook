@@ -10,21 +10,21 @@ import com.br.matchbook.repositories.UserRepository;
 public class UserService {
 	@Autowired
 	private UserRepository userRepository;
-	
 
 	public Iterable<User> showAllUsers() {
 		return userRepository.findAll();
 	}
-	public String updateProfile (Integer id, User user) {
+
+	public String updateProfile(Integer id, User user) {
 		userRepository.save(user);
 		return "Perfil atualizado";
 	}
-	
-	public void likeUser (User userLiker, Integer id) {
+
+	public void likeUser(User userLiker, Integer id) {
 		User obj = userRepository.findById(userLiker.getId()).get();
 		obj.getUsersLiked().add(userRepository.findById(id).get());
 		userRepository.save(obj);
-		
+
 	}
-	
+
 }
