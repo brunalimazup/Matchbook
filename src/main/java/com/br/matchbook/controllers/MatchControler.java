@@ -75,9 +75,7 @@ public class MatchControler {
 			modelAndView.addObject("erros", erros);
 		} else {
 			loginService.registerLogin(user, login);
-			modelAndView.addObject("logins", loginService.registerLogin(user, login));
-			modelAndView.addObject("users", userService.showAllUsers());
-
+			modelAndView = new ModelAndView("redirect:/perfil");
 		}
 
 		return modelAndView;
