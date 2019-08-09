@@ -77,7 +77,7 @@ public class MatchController {
 		} else {
 			loginService.registerLogin(user, login);
 			modelAndView = new ModelAndView("redirect:/login");
-			
+
 		}
 
 		return modelAndView;
@@ -158,9 +158,14 @@ public class MatchController {
 
 	@GetMapping("/perfil")
 	public ModelAndView displayProfile(HttpSession session) {
-		ModelAndView modelAndView = new ModelAndView("profile.html");
-		User user = (User) session.getAttribute("User");
-		modelAndView.addObject("user", userService.toCompareUsers(user));
+		ModelAndView modelAndView = null;
+		if (session.getAttribute("User") != null) {
+			modelAndView = new ModelAndView("profile.html");
+			User user = (User) session.getAttribute("User");
+			modelAndView.addObject("user", userService.toCompareUsers(user));
+		} else {
+			modelAndView = new ModelAndView("redirect:/login");
+		}
 		return modelAndView;
 	}
 
@@ -171,6 +176,5 @@ public class MatchController {
 		ModelAndView modelAndView = new ModelAndView("redirect:/perfil");
 		return modelAndView;
 	}
-	
 
 }
