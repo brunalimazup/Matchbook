@@ -1,21 +1,23 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
 <body>
 	<div>
 		<form method="POST">
 			<p>Apelido: <input type="text" name="nickname"> </p>
 			<p>Senha: <input type="password" name="password"> </p>
 			<button type="submit">Entrar</button>
-			
-	</form>
-		<button> <a href="/"> Voltar para a home  </a> </button>  
+
+		</form>
+		<button> <a href="/"> Voltar para a home </a> </button>
 	</div>
 	<div th:each="erro : ${error}">
 		<p th:text="${erro}"></p>
@@ -23,6 +25,7 @@
 	<form action="/sair" method="POST">
 		<button type="submit">Sair</button>
 	</form>
-	
+
 </body>
+
 </html>
