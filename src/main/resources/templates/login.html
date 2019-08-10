@@ -20,5 +20,9 @@
 	<div th:each="erro : ${error}">
 		<p th:text="${erro}"></p>
 	</div>
+	<form action="/sair" method="POST">
+		<button type="submit">Sair</button>
+	</form>
+	
 </body>
 </html>
