@@ -1,0 +1,21 @@
+div {
+    color: lavender;
+    text-align: center; 
+}
+body {
+    background: #03001e;  
+    background: -webkit-linear-gradient(to top, #fdeff9, #7303c0, #03001e); 
+    background: linear-gradient(to bottom, #fdeff9, #7303c0, #03001e);    
+    height: 100vh;
+}
+h1  {
+  font-size: 100px;
+}
+h3 {
+  font-size: 50px;
+}
+.button {
+  border-radius: 30px;
+  font-size: 100px;
+  padding-left: 1100px;  
+}
