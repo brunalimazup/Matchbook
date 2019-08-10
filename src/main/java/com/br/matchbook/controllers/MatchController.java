@@ -97,7 +97,7 @@ public class MatchController {
 		ModelAndView modelAndView = null;
 		if (session.getAttribute("lastUrl") != null) {
 			modelAndView = new ModelAndView("redirect:" + session.getAttribute("lastUrl"));
-		} 
+		}
 		Login objectLogin = loginService.findByNickAndPass(login);
 		if (objectLogin != null) {
 			session.setAttribute("User", objectLogin.getUser());
@@ -144,13 +144,14 @@ public class MatchController {
 			for (FieldError objectError : bindingGenre.getFieldErrors()) {
 				erros.add(new Erros(objectError.getDefaultMessage(), objectError.getField()));
 			}
+
 			System.out.println(erros);
 			modelAndView.addObject("erros", erros);
 		} else {
 			literaryGenreService.saveLiteraryGenre(literaryGenre);
 			modelAndView.addObject("genres", literaryGenreService.showAllLiteraryGenres());
-
 		}
+
 		return modelAndView;
 	}
 
