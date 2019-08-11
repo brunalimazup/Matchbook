@@ -12,16 +12,26 @@
 <body>
 	<div>
 		<form method="POST">
-			<p>Apelido: <input type="text" name="nickname"> </p>
-			<p>Senha: <input type="password" name="password"> </p>
+
+			<div th:each="erro : ${error}">
+				<p th:text="${erro}"></p>
+			</div>
+
+			<div>
+				<p> Apelido : <input type="text" name="nickname"> </p>
+				<span th:each="erro : ${erros}" th:if="${erro.field == 'nickname'}" th:text="${erro.msg}"></span>
+			</div>
+			<div>
+				<p> Senha: <input type="password" name="password"> </p>
+				<span th:each="erro : ${erros}" th:if="${erro.field == 'password'}" th:text="${erro.msg}"></span>
+			</div>
+
 			<button type="submit">Entrar</button>
 
 		</form>
 		<button> <a href="/"> Voltar para a home </a> </button>
 	</div>
-	<div th:each="erro : ${error}">
-		<p th:text="${erro}"></p>
-	</div>
+
 	<form action="/sair" method="POST">
 		<button type="submit">Sair</button>
 	</form>
