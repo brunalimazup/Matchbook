@@ -78,12 +78,6 @@ public class MatchController {
 		return modelAndView;
 	}
 
-	@PutMapping("/cadastro/{id}")
-	public ModelAndView updateProfile(@PathVariable Integer id, @Valid User user, BindingResult bindingUser) {
-		ModelAndView modelAndView = new ModelAndView("updateProfile.html");
-		modelAndView.addObject("message", userService.updateProfile(id, user));
-		return modelAndView;
-	}
 
 	// metodos da pagina de login
 	
@@ -117,15 +111,6 @@ public class MatchController {
 			}
 		}
 		return modelAndView;
-	}
-
-	@DeleteMapping("/login/deletar")
-	public ModelAndView delete(Login login, User user) {
-		ModelAndView modelAndView = new ModelAndView("login.html");
-		loginService.deleteLogin(login);
-		modelAndView.addObject(login);
-		return modelAndView;
-
 	}
 
 	@PostMapping("/sair")
@@ -184,5 +169,15 @@ public class MatchController {
 		ModelAndView modelAndView = new ModelAndView("redirect:/perfil");
 		return modelAndView;
 	}
+	@GetMapping("/matchs")
+	public ModelAndView allUsersList (HttpSession session, Integer id) {
+		User user = (User) session.getAttribute("User");
+		userService.toCompareUsers(user);
+		ModelAndView modelAndView = new ModelAndView("matchs.html");
+		return modelAndView;
+	}
 
 }
+
+
+
