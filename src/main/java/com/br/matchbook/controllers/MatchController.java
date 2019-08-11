@@ -153,6 +153,7 @@ public class MatchController {
 			for (FieldError objectError : bindingGenre.getFieldErrors()) {
 				erros.add(new Erros(objectError.getDefaultMessage(), objectError.getField()));
 			}
+
 			System.out.println(erros);
 			modelAndView.addObject("erros", erros);
 		} else {
