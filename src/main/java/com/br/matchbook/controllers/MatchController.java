@@ -44,11 +44,7 @@ public class MatchController {
 
 	// metodos da pagina de login
 
-	@GetMapping("/login")
-	public ModelAndView displayLoginPage() {
-		ModelAndView modelAndView = new ModelAndView("login.html");
-		return modelAndView;
-	}
+
 
 	// metodos da pagina de cadastro de usuarios
 
@@ -90,7 +86,12 @@ public class MatchController {
 	}
 
 	// metodos da pagina de login
-
+	
+	@GetMapping("/login")
+	public ModelAndView displayLoginPage() {
+		ModelAndView modelAndView = new ModelAndView("login.html");
+		return modelAndView;
+	}
 	@PostMapping("/login")
 	public ModelAndView login(@Valid Login login, BindingResult bindingResult ,HttpSession session) {
 		ModelAndView modelAndView = null;
