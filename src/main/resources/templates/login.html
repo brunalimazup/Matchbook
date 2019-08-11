@@ -19,11 +19,11 @@
 
 			<div>
 				<p> Apelido : <input type="text" name="nickname"> </p>
-				<span th:each="erro : ${erros}" th:if="${erro.field == 'nickname'}" th:text="${erro.msg}"></span>
+				<span th:each="error : ${validationFailures}" th:if="${error.field == 'nickname'}" th:text="${error.message}"></span>
 			</div>
 			<div>
 				<p> Senha: <input type="password" name="password"> </p>
-				<span th:each="erro : ${erros}" th:if="${erro.field == 'password'}" th:text="${erro.msg}"></span>
+				<span th:each="error : ${validationFailures}" th:if="${error.field == 'password'}" th:text="${error.message}"></span>
 			</div>
 
 			<button type="submit">Entrar</button>

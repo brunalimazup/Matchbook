@@ -65,15 +65,14 @@ public class MatchController {
 		ModelAndView modelAndView = new ModelAndView("register.html");
 
 		if (bindingLogin.hasErrors() || bindingUser.hasErrors()) {
-			List<ValidationFailures> erros = new ArrayList<ValidationFailures>();
+			List<ValidationFailures> errors = new ArrayList<ValidationFailures>();
 			for (FieldError objectError : bindingLogin.getFieldErrors()) {
-				erros.add(new ValidationFailures(objectError.getDefaultMessage(), objectError.getField()));
+				errors.add(new ValidationFailures(objectError.getDefaultMessage(), objectError.getField()));
 			}
 			for (FieldError objectError : bindingUser.getFieldErrors()) {
-				erros.add(new ValidationFailures(objectError.getDefaultMessage(), objectError.getField()));
+				errors.add(new ValidationFailures(objectError.getDefaultMessage(), objectError.getField()));
 			}
-			System.out.println(erros);
-			modelAndView.addObject("erros", erros);
+			modelAndView.addObject("validationFailures", errors);
 		} else {
 			loginService.registerLogin(user, login);
 			modelAndView = new ModelAndView("redirect:/login");
@@ -104,12 +103,12 @@ public class MatchController {
 			modelAndView = new ModelAndView("redirect:/perfil");
 		} else {
 			if (bindingResult.hasErrors()) {
-				List<ValidationFailures> erros = new ArrayList<ValidationFailures>();
+				List<ValidationFailures> errors = new ArrayList<ValidationFailures>();
 				for (FieldError objectError : bindingResult.getFieldErrors()) {
-					erros.add(new ValidationFailures(objectError.getDefaultMessage(), objectError.getField()));
+					errors.add(new ValidationFailures(objectError.getDefaultMessage(), objectError.getField()));
 				}
 				modelAndView = new ModelAndView("login.html");
-				modelAndView.addObject("erros", erros);
+				modelAndView.addObject("validationFailures", errors);
 			} else {
 				String error = "Senha ou Nome incorretos. Verifique se possui um cadastro.";
 				modelAndView = new ModelAndView("login.html");
@@ -149,13 +148,11 @@ public class MatchController {
 		ModelAndView modelAndView = new ModelAndView("registerLiteraryGenre.html");
 
 		if (bindingGenre.hasErrors()) {
-			List<ValidationFailures> erros = new ArrayList<ValidationFailures>();
+			List<ValidationFailures> errors = new ArrayList<ValidationFailures>();
 			for (FieldError objectError : bindingGenre.getFieldErrors()) {
-				erros.add(new ValidationFailures(objectError.getDefaultMessage(), objectError.getField()));
+				errors.add(new ValidationFailures(objectError.getDefaultMessage(), objectError.getField()));
 			}
-
-			System.out.println(erros);
-			modelAndView.addObject("erros", erros);
+			modelAndView.addObject("validationFailures", errors);
 		} else {
 			literaryGenreService.saveLiteraryGenre(literaryGenre);
 			modelAndView.addObject("genres", literaryGenreService.showAllLiteraryGenres());
