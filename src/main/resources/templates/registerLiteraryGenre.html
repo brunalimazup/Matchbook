@@ -11,7 +11,7 @@
         <form method="POST">
             <div>
                 <p> Gênero Literário : <input type="text" name="name"> </p>
-                <span th:each="erro : ${erros}" th:if="${erro.field == 'name'}" th:text="${erro.msg}"></span>
+                <span th:each="error : ${validationFailures}" th:if="${error.field == 'name'}" th:text="${error.message}"></span>
             </div>
             <button type="submit"> Cadastrar </button>
         </form>
