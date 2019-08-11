@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.br.matchbook.models.Erros;
 import com.br.matchbook.models.LiteraryGenre;
 import com.br.matchbook.models.Login;
 import com.br.matchbook.models.User;
+import com.br.matchbook.models.ValidationFailures;
 import com.br.matchbook.services.LiteraryGenreService;
 import com.br.matchbook.services.LoginService;
 import com.br.matchbook.services.UserService;
@@ -65,12 +65,12 @@ public class MatchController {
 		ModelAndView modelAndView = new ModelAndView("register.html");
 
 		if (bindingLogin.hasErrors() || bindingUser.hasErrors()) {
-			List<Erros> erros = new ArrayList<Erros>();
+			List<ValidationFailures> erros = new ArrayList<ValidationFailures>();
 			for (FieldError objectError : bindingLogin.getFieldErrors()) {
-				erros.add(new Erros(objectError.getDefaultMessage(), objectError.getField()));
+				erros.add(new ValidationFailures(objectError.getDefaultMessage(), objectError.getField()));
 			}
 			for (FieldError objectError : bindingUser.getFieldErrors()) {
-				erros.add(new Erros(objectError.getDefaultMessage(), objectError.getField()));
+				erros.add(new ValidationFailures(objectError.getDefaultMessage(), objectError.getField()));
 			}
 			System.out.println(erros);
 			modelAndView.addObject("erros", erros);
@@ -104,9 +104,9 @@ public class MatchController {
 			modelAndView = new ModelAndView("redirect:/perfil");
 		} else {
 			if (bindingResult.hasErrors()) {
-				List<Erros> erros = new ArrayList<Erros>();
+				List<ValidationFailures> erros = new ArrayList<ValidationFailures>();
 				for (FieldError objectError : bindingResult.getFieldErrors()) {
-					erros.add(new Erros(objectError.getDefaultMessage(), objectError.getField()));
+					erros.add(new ValidationFailures(objectError.getDefaultMessage(), objectError.getField()));
 				}
 				modelAndView = new ModelAndView("login.html");
 				modelAndView.addObject("erros", erros);
@@ -149,9 +149,9 @@ public class MatchController {
 		ModelAndView modelAndView = new ModelAndView("registerLiteraryGenre.html");
 
 		if (bindingGenre.hasErrors()) {
-			List<Erros> erros = new ArrayList<Erros>();
+			List<ValidationFailures> erros = new ArrayList<ValidationFailures>();
 			for (FieldError objectError : bindingGenre.getFieldErrors()) {
-				erros.add(new Erros(objectError.getDefaultMessage(), objectError.getField()));
+				erros.add(new ValidationFailures(objectError.getDefaultMessage(), objectError.getField()));
 			}
 
 			System.out.println(erros);

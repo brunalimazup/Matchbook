@@ -1,10 +1,11 @@
 package com.br.matchbook.models;
 
-public class Error {
+public class ValidationFailures {
+
 	private String message;
 	private String field;
 
-	public Error(String message, String field) {
+	public ValidationFailures(String message, String field) {
 		this.field = field;
 		this.message = message;
 	}
@@ -32,6 +33,6 @@ public class Error {
 		modelo.append(this.field);
 		modelo.append(this.message);
 		return modelo.toString();
-		
+
 	}
 }
