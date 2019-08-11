@@ -93,19 +93,28 @@ public class MatchController {
 	// metodos da pagina de login
 
 	@PostMapping("/login")
-	public ModelAndView login(@Valid Login login, HttpSession session) {
+	public ModelAndView login(@Valid Login login, BindingResult bindingResult ,HttpSession session) {
 		ModelAndView modelAndView = null;
 		if (session.getAttribute("lastUrl") != null) {
 			modelAndView = new ModelAndView("redirect:" + session.getAttribute("lastUrl"));
-		} 
+		}
 		Login objectLogin = loginService.findByNickAndPass(login);
 		if (objectLogin != null) {
 			session.setAttribute("User", objectLogin.getUser());
 			modelAndView = new ModelAndView("redirect:/perfil");
 		} else {
-			String error = "Senha ou Nome incorretos. Verifique se possui um cadastro.";
-			modelAndView = new ModelAndView("login.html");
-			modelAndView.addObject("error", error);
+			if (bindingResult.hasErrors()) {
+				List<Erros> erros = new ArrayList<Erros>();
+				for (FieldError objectError : bindingResult.getFieldErrors()) {
+					erros.add(new Erros(objectError.getDefaultMessage(), objectError.getField()));
+				}
+				modelAndView = new ModelAndView("login.html");
+				modelAndView.addObject("erros", erros);
+			} else {
+				String error = "Senha ou Nome incorretos. Verifique se possui um cadastro.";
+				modelAndView = new ModelAndView("login.html");
+				modelAndView.addObject("error", error);
+			}
 		}
 		return modelAndView;
 	}
@@ -149,8 +158,8 @@ public class MatchController {
 		} else {
 			literaryGenreService.saveLiteraryGenre(literaryGenre);
 			modelAndView.addObject("genres", literaryGenreService.showAllLiteraryGenres());
-
 		}
+
 		return modelAndView;
 	}
 
