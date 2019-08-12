@@ -171,9 +171,15 @@ public class MatchController {
 	}
 	@GetMapping("/matchs")
 	public ModelAndView allUsersList (HttpSession session, Integer id) {
-		User user = (User) session.getAttribute("User");
-		userService.toCompareUsers(user);
-		ModelAndView modelAndView = new ModelAndView("matchs.html");
+		ModelAndView modelAndView = null;
+		if (session.getAttribute("User") != null) {
+			modelAndView = new ModelAndView("matchs.html");
+//			User user = (User) session.getAttribute("User");
+			modelAndView.addObject("user", userService.showAllUsers());
+		} else {
+			modelAndView = new ModelAndView("redirect:/login");
+
+		}
 		return modelAndView;
 	}
 
