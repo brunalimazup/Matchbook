@@ -8,12 +8,24 @@
 </head>
 <body>
  <div>
+ <nav class="menu">
+    <ul>
+    	 <li><span class="logo">MatchBook</span></li>
+    	 <li> </li>
+        <li><a href="/">Home</a></li>
+           <li><a href="/login">Entre</a></li>
+        <li><a href="/cadastro">Cadastre-se </a></li>
+        <li><a href="/perfil">Encontre pessoas</a></li>
+        <li><a href="/matchs"> Matchs</a></li>
+    </ul>
+</nav>
+ 
         <form method="POST">
             <div>
                 <p> Gênero Literário : <input type="text" name="name"> </p>
                 <span th:each="error : ${validationFailures}" th:if="${error.field == 'name'}" th:text="${error.message}"></span>
             </div>
-            <button type="submit"> Cadastrar </button>
+            <button class="buttonFormato" type="submit"> Cadastrar </button>
         </form>
 </body>
 </html>

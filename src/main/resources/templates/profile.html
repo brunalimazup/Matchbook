@@ -10,20 +10,52 @@
 </head>
 
 <body>
+<nav class="menu">
+    <ul>
+    	 <li><span class="logo">MatchBook</span></li>
+    	 <li> </li>
+        <li><a href="/">Home</a></li>
+           <li><a href="/login">Entre</a></li>
+        <li><a href="/cadastro">Cadastre-se </a></li>
+        <li><a href="/perfil">Encontre pessoas</a></li>
+        <li><a href="/matchs"> Matchs</a></li>
+    </ul>
+</nav>
 
-    <div th:each="users : ${user} ">
-        <h5 th:text="${users.name}"></h5>
-        <p th:text="${users.lastName}"></p>
-        <p th:text="${users.age}"></p>
-        <p th:text="${users.city}"></p>
-        <p th:text="${users.gender}"></p>
-        <form method="POST">
+<div th:each="users : ${user}">
+        <table>
+            <tr>
+                <td><strong>Nome: </strong></td>
+                <td th:text="${users.name}">2</td>
+            </tr>
+            <tr>
+                <td><strong>Sobrenome: </strong></td>
+                <td th:text="${users.lastName}"></td>
+            </tr>
+            <tr>
+                <td><strong>Idade: </strong></td>
+                <td th:text="${users.age}"></td>
+            </tr>
+            <tr>
+                <td><strong>Cidade: </strong></td>
+                <td th:text="${users.city}"></td>
+            </tr>
+             <tr>
+                <td><strong>Sexo: </strong></td>
+                <td th:text="${users.gender}"></td>
+            </tr>
+            <tr>
+                <td><strong>Generos literarios: </strong></td>
+                <td th:each="genre : ${users.literaryGenre}" th:text="${genre.name}"></td>
+            </tr>
+             <form method="POST">
             <input style="display: none;" th:value="${users.id}" name="id">
-            <button type="submit"> Like </button>
+            <button  class="buttonFormato" type="submit"> Like </button>
         </form>
-        
+        </table>
     </div>
 
+    </div>
 
 </body>
 
