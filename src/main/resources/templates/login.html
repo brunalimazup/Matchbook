@@ -11,6 +11,20 @@
 
 <body>
 	<div>
+	<nav class="menu">
+    <ul>
+    	 <li><span class="logo">MatchBook</span></li>
+    	 <li> </li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/login">Entre</a></li>
+        <li><a href="/cadastro">Cadastre-se </a></li>
+        <li><a href="/perfil">Encontre pessoas</a></li>
+        <li><a href="/matchs"> Matchs</a></li>
+    </ul>
+</nav>
+	
+	<h3> Entre </h3>
+	
 		<form method="POST">
 
 			<div th:each="erro : ${error}">
@@ -26,14 +40,14 @@
 				<span th:each="error : ${validationFailures}" th:if="${error.field == 'password'}" th:text="${error.message}"></span>
 			</div>
 
-			<button type="submit">Entrar</button>
+			<button class="buttonFormato" type="submit">Entrar</button>
 
 		</form>
-		<button> <a href="/"> Voltar para a home </a> </button>
+		
 	</div>
 
 	<form action="/sair" method="POST">
-		<button type="submit">Sair</button>
+		<button class="buttonFormato"  type="submit">Sair</button>
 	</form>
 
 </body>
