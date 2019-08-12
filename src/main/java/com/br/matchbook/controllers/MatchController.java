@@ -59,7 +59,8 @@ public class MatchController {
 	public ModelAndView saveForm(@Valid Login login, BindingResult bindingLogin, @Valid User user,
 			BindingResult bindingUser) {
 		ModelAndView modelAndView = new ModelAndView("register.html");
-
+		modelAndView.addObject("literaryGenres", literaryGenreService.showAllLiteraryGenres());
+		
 		if (bindingLogin.hasErrors() || bindingUser.hasErrors()) {
 			List<ValidationFailures> errors = new ArrayList<ValidationFailures>();
 			for (FieldError objectError : bindingLogin.getFieldErrors()) {
